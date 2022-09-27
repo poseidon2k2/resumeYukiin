@@ -279,11 +279,14 @@
 						<div class="row">
 				            <div class="col-xl-3 col-md-12 col-12 col"></div>
 				            <div class="col-xl-6 col-md-12 col-12 col">				              
-				              <form action="#">
-				                <input type="text" name="name" placeholder="Tên(*)" required="" class="form-items">
-				                <input type="email" name="Email" placeholder="Email(*)" required="" class="form-items">
-				                <input type="phone" name="phone" placeholder="Điện thoại(*)" required="" class="form-items">
-				                <textarea name="your-message" cols="40" rows="4"  class="form-items" id="contact-message" aria-invalid="false" placeholder="Nội dung"></textarea>
+				              <form action="https://sheetdb.io/api/v1/7zzq3sty0xos3" method="post" id="sheetdb-form">
+				                <input type="text" placeholder="Tên(*)" name="data[hoten]" required class="form-items">
+
+				                <input type="email" placeholder="Email(*)" name="data[mail]" required class="form-items">
+				                
+				                <input type="text" placeholder="Điện thoại(*)" name="data[phone]" required class="form-items">
+
+				                <textarea name="data[content]" cols="40" rows="4"  class="form-items" id="contact-message" aria-invalid="false" placeholder="Nội dung"></textarea>
 				                <div class="submit-element">
 				                  <button type="submit" value="Contact Now" class="btn-submit"><span>Contact Now</span></button>
 				                </div>
@@ -335,6 +338,22 @@
 		</div>
 	</footer>
 </body>
+<script>
+    var form = document.getElementById('sheetdb-form');
+    form.addEventListener("submit", e => {
+    e.preventDefault();
+   	fetch(form.action, {
+    method : "POST",
+    body: new FormData(document.getElementById("sheetdb-form")),
+    }).then(
+        response => response.json()
+    ).then((html) => {
+    // you can put any JS code here
+    //window.open('page2.html', '_blank');
+    alert("Đã gửi thành công! Tôi sẽ sớm liên hệ lại với bạn.");
+    });
+    });
+</script>
 <script>
 function actionmenu() {
   var element = document.getElementById("menu-mb");
